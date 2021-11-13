@@ -18,9 +18,47 @@ namespace ProblemBir
 {
     class Program
     {
+        static int RandomFunctionCallCount = 0;
+        static Random randomNumber = new Random();
+        static List<int> NumberList = new List<int>(9);
         static void Main(string[] args)
         {
+            for (int i = 0; i < NumberList.Capacity; i++)
+            {
+                AddNumberToList();
+            }
+
+            foreach (int number in NumberList)
+            {
+                Console.Write($"{number}  ");
+            }
+            Console.WriteLine($"\r\nRandom fonksiyonu {RandomFunctionCallCount} kez çağırılmıştır.");
             Console.ReadLine();
+        }
+        static void AddNumberToList()
+        {
+            int RandomNumber = GetRandomNumber();
+            if (NumberList.Contains(RandomNumber) == false)
+            {
+                NumberList.Add(RandomNumber);
+            }
+            else
+            {
+                AddNumberToList();
+            }
+        }
+
+        static int GetRandomNumber()
+        {
+            try
+            {
+                RandomFunctionCallCount++;
+                return randomNumber.Next(1, 10);
+            }
+            catch (Exception)
+            {
+                throw;
+            }
         }
     }
 }
