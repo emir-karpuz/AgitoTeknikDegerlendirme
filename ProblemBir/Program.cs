@@ -30,9 +30,9 @@ namespace ProblemBir
 
             foreach (int number in NumberList)
             {
-                Console.Write($"{number}  ");
+                Console.Write($"{number} ");
             }
-            Console.WriteLine($"\r\nRandom fonksiyonu {RandomFunctionCallCount} kez çağırılmıştır.");
+            Console.WriteLine($"\r\nBu işlem için Random fonksiyonu {RandomFunctionCallCount} kez çağırılmıştır.");
             Console.ReadLine();
         }
         static void AddNumberToList()

@@ -33,43 +33,38 @@ namespace ProblemIki
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("Lütfen ağaç yapısına çevrilmek istenen giriş dizisini doğru formatta giriniz: ");
+            Console.WriteLine("Lütfen giriş dizisini doğru formatta giriniz.");
+            Console.Write("Input: ");
             
             string InputString = Console.ReadLine();   
             char[] InputCharArray = InputString.ToCharArray();
-            Stack<char> stack = new Stack<char>();
-            List<string> ResultList = new List<string>();
-            
-            foreach (char character in InputCharArray)
+            List<char> CharacterTreeList = new List<char>();
+
+            Console.WriteLine("Output: ");
+
+            foreach (char Character in InputCharArray)
             {
-                if (stack.Contains(character))
+                if (CharacterTreeList.Contains(Character) == false)
                 {
-                    stack.Pop();
-                    ResultList.Add(CharacterRank(stack.Count, character));
+                    CharacterTreeList.Add(Character);
+                    Console.WriteLine(GetCharacterWithTreeLevel(CharacterTreeList.Count, Character));
                 }
                 else
                 {
-                    stack.Push(character);
-                    //Console.WriteLine(character + " eklendi.");
+                    CharacterTreeList.Remove(Character);
                 }
-            }
-            ResultList.Reverse();
-            foreach (string item in ResultList)
-            {
-                Console.WriteLine(item);
             }
             Console.ReadLine();
         }
 
-        static string CharacterRank(int Count, char Character)
+        static string GetCharacterWithTreeLevel(int CharacterCount, char Character)
         {
-            string characterConvertResult = string.Empty;
-            for (int i = 0; i < Count; i++)
+            string TreeLevel = string.Empty;
+            for (int i = 0; i < CharacterCount - 1; i++)
             {
-                characterConvertResult += "-"; 
+                TreeLevel += "-"; 
             }
-            return characterConvertResult + Character;
+            return TreeLevel + Character;
         }
-
     }
 }
